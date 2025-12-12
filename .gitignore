@@ -1,0 +1,16 @@
+# --- CHIẾN THUẬT: CHẶN HẾT, CHỈ NHẬN NGƯỜI QUEN ---
+
+# 1. Chặn tất cả mọi thứ trong thư mục
+*
+
+# 2. Nhưng ngoại trừ (cho phép) các folder (để còn chui vào trong tìm code)
+!*/
+
+# 3. Ngoại trừ (cho phép) các file code C++
+!*.cpp
+!*.h
+!*.hpp
+
+# 4. Ngoại trừ file cấu hình này (không được chặn chính mình)
+!.gitignore
+!README.md
