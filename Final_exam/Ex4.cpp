@@ -11,16 +11,16 @@ string DoiSangLaMa(int n)
     int val[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
     string sym[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
-    string ketqua = "";
+    string result = "";
     for (int i = 0; i < 13; i++)
     {
         while (n >= val[i])
         {
-            ketqua += sym[i];
+            result += sym[i];
             n -= val[i];
         }
     }
-    return ketqua;
+    return result;
 }
 
 int main()
