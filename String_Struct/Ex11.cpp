@@ -23,11 +23,12 @@ int myStrcmp(char s1[], char s2[])
     int i = 0;
     while (s1[i] == s2[i])
     {
-        i++;
+
         if (s1[i] == '\0')
         {
             return 0;
         }
+        i++;
     }
     if (s1[i] > s2[i])
     {
@@ -45,7 +46,7 @@ void StringRev(char s[])
         n--;
     }
     int start = 0;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i <= n; i++)
     {
         if (s[i] == ' ' || s[i] == '\0')
         {
