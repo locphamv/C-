@@ -23,29 +23,31 @@ int main()
         cout << "Vi tri " << k << " khong thoa dieu kien." << endl;
     else
     {
-
         int len = myStrlen(s, 0);
         if (len > 0 && s[len - 1] == '\n')
         {
             s[len - 1] = '\0';
+            len--;
         }
 
-        int newLen = myStrlen(s, 0);
-        if (k > newLen)
-            k = newLen;
+        if (k > len)
+        {
+
+            cout << "Vi tri " << k << " khong thoa dieu kien." << endl;
+            return 0;
+        }
 
         int len1 = myStrlen(s1, 0);
         if (len1 > 0 && s1[len1 - 1] == '\n')
         {
             s1[len1 - 1] = '\0';
+            len1--;
         }
 
         ChenChuoiTaiVitriK(s, s1, k);
         cout << s;
     }
-    return 0;
 }
-
 int myStrlen(char s[], int k)
 {
     int count = 0;
