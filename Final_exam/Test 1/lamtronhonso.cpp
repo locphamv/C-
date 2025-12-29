@@ -20,35 +20,32 @@ int main()
     double a;
     long long n;
 
-    if (cin >> a >> n)
+    cin >> a >> n;
+    long long total = round(a * n);
+    long long integer_part = total / n;
+    long long numerator = total % n;
+
+    if (numerator == 0)
     {
 
-        long long total = round(a * n);
-        long long integer_part = total / n;
-        long long numerator = total % n;
+        cout << integer_part;
+    }
+    else
+    {
 
-        if (numerator == 0)
+        long long common = gcd(numerator, n);
+
+        numerator = numerator / common;
+        long long denominator = n / common;
+
+        if (integer_part != 0)
         {
-
-            cout << integer_part;
+            cout << integer_part << " " << numerator << "/" << denominator;
         }
         else
         {
 
-            long long common = gcd(numerator, n);
-
-            numerator = numerator / common;
-            long long denominator = n / common;
-
-            if (integer_part != 0)
-            {
-                cout << integer_part << " " << numerator << "/" << denominator;
-            }
-            else
-            {
-
-                cout << numerator << "/" << denominator;
-            }
+            cout << numerator << "/" << denominator;
         }
     }
     return 0;
