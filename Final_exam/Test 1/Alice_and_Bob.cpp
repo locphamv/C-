@@ -1,72 +1,44 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 int main()
 {
-    long long n, k, p, q;
+    int n, k, p, q;
 
     cin >> n >> k >> p >> q;
 
-    long long aliceIdx = (p - 1) * 2 + q;
-
-    long long bobBack = aliceIdx - k;
-    long long bobFwd = aliceIdx + k;
-
-    long long chosenIdx = -1;
-
-    long long rowBack = -1, distBack = -1;
-    long long rowFwd = -1, distFwd = -1;
-
-    bool validBack = (bobBack >= 1);
-    if (validBack)
+    int a = (p - 1) * 2 + q;
+    int b1 = a - k;
+    int b2 = a + k;
+    int best = -1;
+    if (1 <= b1 && b1 <= n)
     {
-        rowBack = (bobBack + 1) / 2;
-        distBack = abs(p - rowBack);
+        best = b1;
     }
-
-    bool validFwd = (bobFwd <= n);
-    if (validFwd)
+    if (1 <= b2 && b2 <= n)
     {
-        rowFwd = (bobFwd + 1) / 2;
-        distFwd = abs(rowFwd - p);
-    }
-
-    if (validBack && validFwd)
-    {
-
-        if (distBack <= distFwd)
+        if (best == -1)
         {
-
-            chosenIdx = bobBack;
+            best = b2;
         }
         else
         {
-
-            chosenIdx = bobFwd;
+            int rBest = (best + 1) / 2;
+            int r2 = (b2 + 1) / 2;
+            int dBest = abs(rBest - p);
+            int d2 = abs(r2 - p);
+            if (d2 < dBest)
+                best = b2;
         }
     }
-    else if (validBack)
-    {
-
-        chosenIdx = bobBack;
-    }
-    else if (validFwd)
-    {
-
-        chosenIdx = bobFwd;
-    }
-
-    if (chosenIdx == -1)
+    if (best == -1)
     {
         cout << -1;
     }
     else
     {
-
-        long long u = (chosenIdx + 1) / 2;
-        long long v = (chosenIdx % 2 == 0) ? 2 : 1;
-        cout << u << " " << v;
+        cout << (best + 1) / 2 << " " << ((best % 2 == 1) ? 1 : 2);
     }
-
     return 0;
 }
