@@ -14,10 +14,6 @@ void xoaPhanTu(int a[], int &n, int p, int k)
     for (int i = p; i < n; i++)
     {
         a[i] = a[i + k];
-        if (i == i + k)
-        {
-            break;
-        }
     }
     n = n - k;
 }
