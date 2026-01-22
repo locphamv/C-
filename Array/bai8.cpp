@@ -17,11 +17,9 @@ int secondVal(int a[], int n)
     {
         if (maxVal < a[i])
         {
+            secondmax = maxVal;
             maxVal = a[i];
         }
-    }
-    for (int i = 0; i < n; i++)
-    {
         if (secondmax < a[i] && a[i] < maxVal)
         {
             secondmax = a[i];
