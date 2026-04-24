@@ -1,101 +1,27 @@
-#include <iostream>
-#include <queue>
-#include <unordered_map>
-#include <vector>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-struct WindowMedian
+class window
 {
-    priority_queue<int> maxHeap;
-    priority_queue<int, vector<int>, greater<int>> minHeap;
-    unordered_map<int, int> toRemove;
-    int sizeLo = 0;
-    int sizeHi = 0;
+  private:
+    multiset<int> low, high;
+    int d;
 
-    void cleanHeaps()
-    {
-        while (!maxHeap.empty() && toRemove[maxHeap.top()] > 0)
-        {
-            toRemove[maxHeap.top()]--;
-            maxHeap.pop();
-        }
-        while (!minHeap.empty() && toRemove[minHeap.top()] > 0)
-        {
-            toRemove[minHeap.top()]--;
-            minHeap.pop();
-        }
-    }
-
-    void rebalance()
-    {
-        cleanHeaps();
-        while (sizeLo > sizeHi + 1)
-        {
-            minHeap.push(maxHeap.top());
-            maxHeap.pop();
-            sizeLo--;
-            sizeHi++;
-            cleanHeaps();
-        }
-        while (sizeLo < sizeHi)
-        {
-            maxHeap.push(minHeap.top());
-            minHeap.pop();
-            sizeLo++;
-            sizeHi--;
-            cleanHeaps();
-        }
-    }
-
-    void insert(int val)
-    {
-        if (maxHeap.empty() || val <= maxHeap.top())
-        {
-            maxHeap.push(val);
-            sizeLo++;
-        }
-        else
-        {
-            minHeap.push(val);
-            sizeHi++;
-        }
-        rebalance();
-    }
-
-    void remove(int val)
-    {
-        if (val <= maxHeap.top())
-            sizeLo--;
-        else
-            sizeHi--;
-
-        toRemove[val]++;
-        rebalance();
-    }
-
-    long long getDoubleMedian(int d)
-    {
-        cleanHeaps();
-        if (d % 2 != 0)
-        {
-            return 2LL * maxHeap.top();
-        }
-        else
-        {
-            return 1LL * maxHeap.top() + minHeap.top();
-        }
-    }
+  public:
+    window(int size) : d(size) {};
+    void canBang();
+    void them(int x);
+    void xoa(int x);
+    int doubleTrungVi();
 };
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
     int n, d;
-    if (!(cin >> n >> d))
-        return 0;
+    cin >> n >> d;
 
     vector<int> a(n);
     for (int i = 0; i < n; i++)
@@ -103,25 +29,80 @@ int main()
         cin >> a[i];
     }
 
-    WindowMedian wm;
-    int ans = 0;
-
+    window wd(d);
+    int dem = 0;
     for (int i = 0; i < d; i++)
     {
-        wm.insert(a[i]);
+        wd.them(a[i]);
     }
 
     for (int i = d; i < n; i++)
     {
-        if (a[i] >= wm.getDoubleMedian(d))
+        if (a[i] >= wd.doubleTrungVi())
         {
-            ans++;
+            dem++;
         }
-
-        wm.remove(a[i - d]);
-        wm.insert(a[i]);
+        wd.them(a[i]);
+        wd.xoa(a[i - d]);
     }
 
-    cout << ans << "\n";
-    return 0;
+    cout << dem;
+}
+
+void window::canBang()
+{
+    int total_size = low.size() + high.size();
+    int need_low = (total_size + 1) / 2;
+
+    if (low.size() < need_low)
+    {
+        auto it = high.begin();
+        low.insert(*it);
+        high.erase(it);
+    }
+    else if (low.size() > need_low)
+    {
+        auto it = prev(low.end());
+        high.insert(*it);
+        low.erase(it);
+    }
+}
+
+void window::them(int x)
+{
+    auto it = prev(low.end());
+    if (low.empty() || x <= *it)
+    {
+        low.insert(x);
+    }
+    else
+    {
+        high.insert(x);
+    }
+    canBang();
+}
+
+void window::xoa(int x)
+{
+    if (low.find(x) != low.end())
+    {
+        low.erase(low.find(x));
+    }
+    else if (high.find(x) != high.end())
+    {
+        high.erase(high.find(x));
+    }
+    canBang();
+}
+
+int window::doubleTrungVi()
+{
+    if (d % 2 != 0)
+    {
+        return 2 * (*prev(low.end()));
+    }
+    else
+    {
+        return *prev(low.end()) + *high.begin();
+    }
 }
