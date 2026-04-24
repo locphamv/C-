@@ -1,82 +1,79 @@
-#include <iostream>
-#include <stack>
-#include <string>
-#include <vector>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-bool isOperator(string x)
+bool isNumber(const string &s)
 {
-    return (x == "+" || x == "-" || x == "x" || x == ":");
+    if (s.empty())
+        return false;
+    int i = 0;
+    if (s[0] == '-')
+    {
+        if (s.size() == 1)
+            return false;
+        i = 1;
+    }
+    for (; i < (int)s.size(); i++)
+    {
+        if (s[i] < '0' || s[i] > '9')
+            return false;
+    }
+    return true;
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
     stack<long long> st;
-    string x;
+    string token;
 
-    while (cin >> x)
+    while (cin >> token)
     {
-        if (!isOperator(x))
+        if (isNumber(token))
         {
-            try
-            {
-                st.push(stoll(x));
-            }
-            catch (...)
-            {
-                cout << "KHONG HOP LE\n";
-                return 0;
-            }
+            st.push(stoll(token));
         }
-        else
+        else if (token == "+" || token == "-" || token == "x" || token == ":")
         {
             if (st.size() < 2)
             {
-                cout << "KHONG HOP LE\n";
+                cout << "KHONG HOP LE";
                 return 0;
             }
 
-            long long a = st.top();
-            st.pop();
             long long b = st.top();
             st.pop();
+            long long a = st.top();
+            st.pop();
+            long long res = 0;
 
-            if (x == "+")
+            if (token == "+")
+                res = a + b;
+            else if (token == "-")
+                res = a - b;
+            else if (token == "x")
+                res = a * b;
+            else
             {
-                st.push(b + a);
-            }
-            else if (x == "-")
-            {
-                st.push(b - a);
-            }
-            else if (x == "x")
-            {
-                st.push(b * a);
-            }
-            else if (x == ":")
-            {
-                if (a == 0)
+                if (b == 0)
                 {
-                    cout << "KHONG HOP LE\n";
+                    cout << "KHONG HOP LE";
                     return 0;
                 }
-                st.push(b / a);
+                res = a / b;
             }
+
+            st.push(res);
+        }
+        else
+        {
+            cout << "KHONG HOP LE";
+            return 0;
         }
     }
 
-    if (st.size() == 1)
-    {
-        cout << st.top() << "\n";
-    }
+    if (st.size() != 1)
+        cout << "KHONG HOP LE";
     else
-    {
-        cout << "KHONG HOP LE\n";
-    }
+        cout << st.top();
 
     return 0;
 }
