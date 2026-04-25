@@ -1,5 +1,5 @@
 // MULTI SOURCE BFS:
-//queue chứ cặp toạ độ 
+//queue chứ cặp toạ độ gốc
 // đưa các source vào trước gắn count= 0
 // 2 mảng dx dy và 4 vòng for để xét 4 hướng (0=<row<m && 0<=col<n)
 // gặp x cần tìm thì gắn count= count trước đó +1 và đưa vào queue chờ xét 4 hướng.
