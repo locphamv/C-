@@ -5,12 +5,11 @@ Welcome to my repository! This is where I document my progress in learning C++ p
 ## 📂 Repository Structure
 Here is an overview of the folders in this repo:
 
-* **Array/**: Exercises related to Arrays logic.
-* **LOOP/**: Practice on Loops (For, While, Do-While).
-* **Recursion/**: Recursion algorithms and problems.
-* **String_Struct/**: Advanced practice with Strings and Structs.
-* **Struct/**: Basic Data Structures implementation.
-
+* **Basic c++/**: Simple exercises related to arrays, loop, recursion, string, struct...
+* **OOP/**: Use c++ to do create some objects
+* **leetcode/**: some leetcode exs using c++
+* **DSA/**: A lot of advanced exs on linked list, tree, map, set...
+* 
 ## 🛠 Tools & Environment
 * **Language**: C++
 * **IDE**: Visual Studio Code
