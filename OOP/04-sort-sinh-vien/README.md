@@ -52,11 +52,21 @@ SV003 Tran Thi B 10A2 b.tran@school.edu
 
 **Input:**
 ```
-SV005 Pham Quoc D 10A3 d.pham@school.edu
-SV001 Nguyen Van A 10A1 a.nguyen@school.edu
-SV003 Tran Thi B 10A2 b.tran@school.edu
-SV002 Le Van C 10A1 c.le@school.edu
-SV004 Hoang Van E 10A2 e.hoang@school.edu
+SV005
+Pham Quoc D
+10A3 d.pham@school.edu
+SV001
+Nguyen Van A
+10A1 a.nguyen@school.edu
+SV003
+Tran Thi B
+10A2 b.tran@school.edu
+SV002
+Le Van C
+10A1 c.le@school.edu
+SV004
+Hoang Van E
+10A2 e.hoang@school.edu
 ```
 
 **Output:**
