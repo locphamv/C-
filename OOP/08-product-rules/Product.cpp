@@ -147,7 +147,8 @@ void Product::printInfo(ostream &os) const
 {
     // TODO:
     // print id, name, price, quantity, final price
-    os << id << name << price << quantity << price;
+    os << "ID: " << id << " | Name: " << name << " | Price: " << price
+       << " | Quantity: " << quantity << " | Final Price: " << getFinalPrice();
 }
 
 istream &operator>>(istream &is, Product &p)
@@ -187,11 +188,19 @@ class Book : public Product
 };
 
 // TODO: Implement Book constructors
+Book::Book() : Product(), author("Unknown")
+{
+}
 
+Book::Book(string name, double price, int quantity, string author)
+    : Product(name, price, quantity), author(author)
+{
+}
 double Book::getFinalPrice() const
 {
     // TODO:
     // Book gets 10% discount
+    return price * 0.9;
 }
 
 void Book::input(istream &is)
@@ -199,6 +208,8 @@ void Book::input(istream &is)
     // TODO:
     // input common product information
     // then input author
+    Product::input(is);
+    is >> author;
 }
 
 void Book::printInfo(ostream &os) const
@@ -206,6 +217,13 @@ void Book::printInfo(ostream &os) const
     // TODO:
     // print product type: Book
     // print id, name, price, quantity, author, final price
+    os << "Product Type: Book\n";
+    os << "ID: " << id << "\n";
+    os << "Name: " << name << "\n";
+    os << "Price: " << price << "\n";
+    os << "Quantity: " << quantity << "\n";
+    os << "Author: " << author << "\n";
+    os << "Final Price: " << getFinalPrice() << "\n";
 }
 
 // ================= Derived Class: Electronic =================
@@ -227,11 +245,20 @@ class Electronic : public Product
 };
 
 // TODO: Implement Electronic constructors
+Electronic::Electronic() : Product(), warrantyMonths(0)
+{
+}
+
+Electronic::Electronic(string name, double price, int quantity, int warrantyMonths)
+    : Product(name, price, quantity), warrantyMonths(warrantyMonths)
+{
+}
 
 double Electronic::getFinalPrice() const
 {
     // TODO:
     // Electronic has 8% service fee
+    return price * 1.08;
 }
 
 void Electronic::input(istream &is)
@@ -239,6 +266,8 @@ void Electronic::input(istream &is)
     // TODO:
     // input common product information
     // then input warrantyMonths
+    Product::input(is);
+    is >> warrantyMonths;
 }
 
 void Electronic::printInfo(ostream &os) const
@@ -246,6 +275,13 @@ void Electronic::printInfo(ostream &os) const
     // TODO:
     // print product type: Electronic
     // print id, name, price, quantity, warrantyMonths, final price
+    os << "Product Type: Electronic\n";
+    os << "ID: " << id << "\n";
+    os << "Name: " << name << "\n";
+    os << "Price: " << price << "\n";
+    os << "Quantity: " << quantity << "\n";
+    os << "Warranty Months: " << warrantyMonths << "\n";
+    os << "Final Price: " << getFinalPrice() << "\n";
 }
 
 // ================= Derived Class: Food =================
@@ -267,12 +303,23 @@ class Food : public Product
 };
 
 // TODO: Implement Food constructors
+Food::Food() : Product(), expiryDate("")
+{
+}
+
+Food::Food(string name, double price, int quantity, string expiryDate)
+    : Product(name, price, quantity), expiryDate(expiryDate)
+{
+}
 
 double Food::getFinalPrice() const
 {
     // TODO:
     // If quantity >= 10, food gets 20% discount
     // Otherwise return normal price
+    if (quantity >= 10)
+        return price * 0.8;
+    return price;
 }
 
 void Food::input(istream &is)
@@ -280,6 +327,8 @@ void Food::input(istream &is)
     // TODO:
     // input common product information
     // then input expiryDate
+    Product::input(is);
+    is >> expiryDate;
 }
 
 void Food::printInfo(ostream &os) const
@@ -287,6 +336,13 @@ void Food::printInfo(ostream &os) const
     // TODO:
     // print product type: Food
     // print id, name, price, quantity, expiryDate, final price
+    os << "Product Type: Food\n";
+    os << "ID: " << id << "\n";
+    os << "Name: " << name << "\n";
+    os << "Price: " << price << "\n";
+    os << "Quantity: " << quantity << "\n";
+    os << "Expiry Date: " << expiryDate << "\n";
+    os << "Final Price: " << getFinalPrice() << "\n";
 }
 
 // ================= Order Class =================
@@ -316,35 +372,47 @@ class Order
 
 // TODO:
 // Initialize static variable nextOrderId here
+int Order::nextOrderId = 1000;
 
 Order::Order()
 {
     // TODO:
     // assign orderId using nextOrderId
     // increase nextOrderId
+    orderId = Order::nextOrderId;
+    Order::nextOrderId++;
 }
 
 Order::~Order()
 {
     // TODO:
     // delete all Product* inside items
+    for (Product *p : items)
+        delete p;
+    items.clear();
 }
 
 int Order::getOrderId() const
 {
     // TODO
+    return orderId;
 }
 
 void Order::addProduct(Product *p)
 {
     // TODO:
     // push p into items
+    items.push_back(p);
 }
 
 double Order::calculateTotal() const
 {
     // TODO:
     // total = final price * quantity of each product
+    double total = 0;
+    for (const Product *p : items)
+        total += p->getFinalPrice() * p->getQuantity();
+    return total;
 }
 
 void Order::showOrder() const
@@ -353,12 +421,20 @@ void Order::showOrder() const
     // print orderId
     // print all products using operator <<
     // print total
+    cout << "Order ID: " << orderId << "\n";
+    cout << "\nProducts:\n";
+    cout << "-----------------------------------\n";
+    for (const Product *p : items)
+        cout << *p << "\n";
+    cout << "-----------------------------------\n";
+    cout << "Total: " << calculateTotal() << "\n";
 }
 
 int Order::getNextOrderId()
 {
     // TODO:
     // return nextOrderId
+    return nextOrderId;
 }
 
 // ================= Main Function =================
