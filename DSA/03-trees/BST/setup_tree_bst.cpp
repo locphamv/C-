@@ -127,20 +127,64 @@ int Height(Node *root)
     return 1 + max(Height(root->left), Height(root->right));
 }
 
-vector<int> inorderTraversal(Node *root)
+Node *FindMin(Node *root)
 {
-    if (root == NULL)
-        return {};
-
-    vector<int> left = inorderTraversal(root->left);
-    vector<int> right = inorderTraversal(root->right);
-
-    left.push_back(root->data);
-    left.insert(left.end(), right.begin(), right.end());
-
-    return left;
+    while (root != NULL && root->left != NULL)
+    {
+        root = root->left;
+    }
+    return root;
 }
 
+Node *DeleteNode(Node *root, int x)
+{
+    if (root == NULL)
+        return NULL;
+
+    if (x < root->data)
+    {
+        root->left = DeleteNode(root->left, x);
+    }
+    else if (x > root->data)
+    {
+        root->right = DeleteNode(root->right, x);
+    }
+    else
+    {
+        // Case 1: no child
+        if (root->left == NULL && root->right == NULL)
+        {
+            delete root;
+            return NULL;
+        }
+
+        // Case 2: only right child
+        else if (root->left == NULL)
+        {
+            Node *temp = root->right;
+            delete root;
+            return temp;
+        }
+
+        // Case 2: only left child
+        else if (root->right == NULL)
+        {
+            Node *temp = root->left;
+            delete root;
+            return temp;
+        }
+
+        // Case 3: two children
+        else
+        {
+            Node *temp = FindMin(root->right); // inorder successor
+            root->data = temp->data;
+            root->right = DeleteNode(root->right, temp->data);
+        }
+    }
+
+    return root;
+}
 int main()
 {
     Node *root = NULL;
@@ -152,13 +196,9 @@ int main()
     root = Insert(root, 28);
     root = Insert(root, 33);
     root = Insert(root, 10);
+    root = DeleteNode(root, 30);
     Inorder(root);
     cout << "\n";
 
-    vector<int> a = inorderTraversal(root);
-    for (auto x : a)
-    {
-        cout << x << " ";
-    }
     return 0;
 }
