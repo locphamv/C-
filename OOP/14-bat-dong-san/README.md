@@ -105,7 +105,7 @@ CH803
 Tong so giao dich dat: 2
 Tong so giao dich nha: 2
 Tong so giao dich can ho: 3
-```
+
 
 Trung binh thanh tien cua giao dich can ho chung cu: 85000
 
@@ -153,3 +153,4 @@ Dien tich: 65
 Ma can ho: CH1502
 Vi tri tang: 15
 Thanh tien: 78000
+```
