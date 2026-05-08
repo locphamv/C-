@@ -21,14 +21,14 @@ void ChuyenXe::nhap()
     cin >> doanhThu;
 }
 
-void ChuyenXe::xuat()
+void ChuyenXe::xuat() const
 {
     cout << "Ma so chuyen: " << maSoChuyen;
     cout << "\n Ho ten tai xe: " << hoTenTaiXe;
     cout << "\n So xe: " << soXe;
     cout << "\nDoanh thu: " << doanhThu;
 }
-double ChuyenXe::getDoanhThu()
+double ChuyenXe::getDoanhThu() const
 {
     return doanhThu;
 }

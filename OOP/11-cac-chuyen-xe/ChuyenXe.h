@@ -7,12 +7,13 @@ class ChuyenXe
 {
   private:
     string hoTenTaiXe, soXe;
-    double maSoChuyen, doanhThu;
+    double doanhThu;
+    int maSoChuyen;
 
   public:
     ChuyenXe();
 
     virtual void nhap();
-    virtual void xuat();
-    double getDoanhThu();
+    virtual void xuat()const;
+    double getDoanhThu() const;
 };

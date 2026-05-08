@@ -8,27 +8,27 @@ int main()
 
     cout << "\n----NHAP XE NOI THANH----";
     cout << "----NHAP XE 1----\n";
-    noiThanh1.nhapXeNoiThanh();
+    noiThanh1.nhap();
     cout << "\n----Nhap Xe 2----\n";
-    noiThanh2.nhapXeNoiThanh();
+    noiThanh2.nhap();
 
     cout << "\n------THONG TIN XE NOI THANH------\n";
     cout << "\n----Thong tin xe 1----\n";
-    noiThanh1.xuatXeNoiThanh();
+    noiThanh1.xuat();
     cout << "\n----Thong tin Xe 2----\n";
-    noiThanh2.xuatXeNoiThanh();
+    noiThanh2.xuat();
 
     cout << "\n----NHAP XE NGOAI THANH----";
     cout << "\n----NHAP XE 1----\n";
-    ngoaiThanh1.nhapXeNgoaiThanh();
+    ngoaiThanh1.nhap();
     cout << "\n----Nhap Xe 2----\n";
-    ngoaiThanh2.nhapXeNgoaiThanh();
+    ngoaiThanh2.nhap();
 
     cout << "\n------THONG TIN XE NGOAI THANH------\n";
     cout << "----Thong tin xe 1----\n";
-    ngoaiThanh1.xuatXeNgoaiThanh();
+    ngoaiThanh1.xuat();
     cout << "\n----Thong tin Xe 2----\n";
-    ngoaiThanh2.xuatXeNgoaiThanh();
+    ngoaiThanh2.xuat();
 
     cout << "\n---Tong doanh thu: "
          << noiThanh1.getDoanhThu() + noiThanh2.getDoanhThu() + ngoaiThanh1.getDoanhThu() +

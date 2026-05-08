@@ -2,7 +2,7 @@
 
 ChuyenXeNoiThanh::ChuyenXeNoiThanh() : ChuyenXe(), soTuyen(0), soKm(0) {};
 
-void ChuyenXeNoiThanh::nhapXeNoiThanh()
+void ChuyenXeNoiThanh::nhap()
 {
     ChuyenXe::nhap();
     cout << "Nhap so Tuyen: ";
@@ -11,7 +11,7 @@ void ChuyenXeNoiThanh::nhapXeNoiThanh()
     cin >> soKm;
 }
 
-void ChuyenXeNoiThanh::xuatXeNoiThanh()
+void ChuyenXeNoiThanh::xuat() const
 {
     ChuyenXe::xuat();
     cout << "\nSo tuyen: " << soTuyen;

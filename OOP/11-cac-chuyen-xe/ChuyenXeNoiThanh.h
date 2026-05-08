@@ -9,6 +9,6 @@ class ChuyenXeNoiThanh : public ChuyenXe
   public:
     ChuyenXeNoiThanh();
 
-    void nhapXeNoiThanh();
-    void xuatXeNoiThanh();
+    void nhap();
+    void xuat() const;
 };

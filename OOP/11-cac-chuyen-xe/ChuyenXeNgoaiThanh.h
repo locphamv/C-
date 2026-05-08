@@ -1,3 +1,4 @@
+#pragma once
 #include "ChuyenXe.h"
 
 class ChuyenXeNgoaiThanh : public ChuyenXe
@@ -8,7 +9,7 @@ class ChuyenXeNgoaiThanh : public ChuyenXe
 
   public:
     ChuyenXeNgoaiThanh();
-    void nhapXeNgoaiThanh();
-    void xuatXeNgoaiThanh();
+    void nhap();
+    void xuat()const;
 };
 

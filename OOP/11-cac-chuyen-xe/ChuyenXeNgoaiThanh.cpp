@@ -4,7 +4,7 @@ ChuyenXeNgoaiThanh::ChuyenXeNgoaiThanh() : ChuyenXe()
 {
 }
 
-void ChuyenXeNgoaiThanh::nhapXeNgoaiThanh()
+void ChuyenXeNgoaiThanh::nhap()
 {
     ChuyenXe::nhap();
     cout << "Nhap noi den: ";
@@ -13,7 +13,7 @@ void ChuyenXeNgoaiThanh::nhapXeNgoaiThanh()
     cin >> soNgayDi;
 }
 
-void ChuyenXeNgoaiThanh::xuatXeNgoaiThanh()
+void ChuyenXeNgoaiThanh::xuat() const
 {
     ChuyenXe::xuat();
     cout << "\nNoi den: " << noiDen;
