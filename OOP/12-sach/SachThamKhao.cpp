@@ -12,14 +12,15 @@ void SachThamKhao::nhap()
     cin >> thue;
 }
 
-void SachThamKhao::xuat()
+void SachThamKhao::xuat() const
 {
     Sach::xuat();
     cout << "Thue: " << thue << endl;
+    cout << "Thanh tien: " << tinhTien() << endl;
 }
 
-void SachThamKhao::tinhTien()
+double SachThamKhao::tinhTien() const
 {
 
-    cout << getSoLuong() * getDonGia() + thue;
+    return getSoLuong() * getDonGia() + thue;
 }

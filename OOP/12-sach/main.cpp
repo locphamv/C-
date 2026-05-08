@@ -1,5 +1,6 @@
 #include "SachGiaoKhoa.h"
 #include "SachThamKhao.h"
+#include <vector>
 using namespace std;
 
 int main()
@@ -31,17 +32,22 @@ int main()
         sumDonGia += stk[i].getDonGia();
     }
 
-    cout << "Trung binh don gia cua cac sach tham khao: " << sumDonGia / 3.0;
+    cout << "\nThanh tien sach giao khoa: " << a.tinhTien() + b.tinhTien() + c.tinhTien() << endl;
+    cout << "\nThanh tien sach tham khao: "
+         << stk[0].tinhTien() + stk[1].tinhTien() + stk[2].tinhTien() << endl;
+    cout << "\nTrung binh don gia cua cac sach tham khao: " << sumDonGia / 3.0;
 
     string nxb;
-    cout << "Nhap nha xuat ban: ";
+    cout << "\nNhap nha xuat ban: ";
     getline(cin >> ws, nxb);
 
+    int count = 1;
     for (int i = 0; i < 3; i++)
     {
         if (stk[i].getNxb() == nxb)
         {
-            cout << "\nCac sach co cung nha xuat ban " << nxb << " bao gom " << endl;
+            cout << "\nSTT: " << count++ << endl;
+            cout << "Cac sach co cung nha xuat ban " << nxb << " bao gom " << endl;
             stk[i].xuat();
         }
     }

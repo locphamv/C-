@@ -12,21 +12,22 @@ void SachGiaoKhoa::nhap()
     cin >> tinhTrang;
 }
 
-void SachGiaoKhoa::xuat()
+void SachGiaoKhoa::xuat() const
 {
     Sach::xuat();
     cout << "Tinh trang sach: " << tinhTrang << endl;
+    cout << "Thanh tien: " << tinhTien() << endl;
 }
 
-void SachGiaoKhoa::tinhTien()
+double SachGiaoKhoa::tinhTien() const
 {
     double tmp = getSoLuong() * getDonGia();
     if (tinhTrang == "moi")
     {
-        cout << tmp;
+        return tmp;
     }
     else
     {
-        cout << tmp / 2.0;
+        return tmp / 2.0;
     }
 }

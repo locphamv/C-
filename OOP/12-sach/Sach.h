@@ -11,9 +11,9 @@ class Sach
   public:
     Sach();
     virtual void nhap();
-    virtual void xuat();
-    std::string getNxb();
-    int getSoLuong();
-    double getDonGia();
+    virtual void xuat() const;
+    std::string getNxb() const;
+    int getSoLuong() const;
+    double getDonGia() const;
 };
 

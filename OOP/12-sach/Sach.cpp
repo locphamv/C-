@@ -21,7 +21,7 @@ void Sach::nhap()
     cin >> soLuong;
 }
 
-void Sach::xuat()
+void Sach::xuat() const
 {
     cout << "Ma sach: " << ma << endl;
     cout << "Ngay nhap sach: " << ngayNhap << endl;
@@ -30,17 +30,17 @@ void Sach::xuat()
     cout << "So luong: " << soLuong << endl;
 }
 
-int Sach::getSoLuong()
+int Sach::getSoLuong() const
 {
     return soLuong;
 }
 
-double Sach::getDonGia()
+double Sach::getDonGia() const
 {
     return donGia;
 }
 
-string Sach::getNxb()
+string Sach::getNxb() const
 {
     return nhaXuatBan;
 }

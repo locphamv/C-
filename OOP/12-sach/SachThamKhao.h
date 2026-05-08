@@ -1,3 +1,4 @@
+#pragma once
 #include "Sach.h"
 
 class SachThamKhao: public Sach
@@ -7,6 +8,6 @@ class SachThamKhao: public Sach
   public:
     SachThamKhao();
     void nhap();
-    void xuat();
-    void tinhTien();
+    void xuat()const;
+    double tinhTien() const;
 };
