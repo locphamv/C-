@@ -66,7 +66,7 @@ int main()
     }
 
     cout << "\n---Danh sach sinh vien KHONG du dieu kien tot nghiep---";
-    count = 0;
+    count = 1;
     for (int i = 0; i < m; i++)
     {
         cout << "\nSinh vien thu " << count++ << ": \n";
@@ -83,6 +83,4 @@ int main()
             cd[i].xuat();
         }
     }
-
-    cout << "\n---Sinh vien dai hoc co diem trung binh cao nhat---\n";
 }
